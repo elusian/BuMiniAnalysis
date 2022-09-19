@@ -1,0 +1,8 @@
+<use   name="root"/>
+<use   name="NtuAnalysis/Common"/>
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/Read"/>
+<use   name="TMPAnalysis/Ntu"/>
+<environment>
+  <bin   file="treeAnalyze.cc" name="tmpTreeAnalyze"></bin>
+</environment>

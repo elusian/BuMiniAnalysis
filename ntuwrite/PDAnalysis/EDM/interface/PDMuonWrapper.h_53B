@@ -1,0 +1,129 @@
+#ifndef PDMuonWrapper_H
+#define PDMuonWrapper_H
+/** \class PDMuonWrapper
+ *
+ *  Description: 
+ *
+ *
+ *  $Date: 2016-02-10 11:15:56 $
+ *  $Revision: 1.1 $
+ *  \author Paolo Ronchese INFN Padova
+ *
+ */
+
+//----------------------
+// Base Class Headers --
+//----------------------
+
+
+//------------------------------------
+// Collaborating Class Declarations --
+//------------------------------------
+#include "DataFormats/MuonReco/interface/MuonSelectors.h"
+
+//---------------
+// C++ Headers --
+//---------------
+#include <iostream>
+
+//              ---------------------
+//              -- Class Interface --
+//              ---------------------
+
+class PDMuonWrapper {
+
+ public:
+
+  /** Constructor
+   */
+ PDMuonWrapper( pat::Muon* muon = 0 ): ptr( muon ) {}
+
+  /** Destructor
+   */
+  virtual ~PDMuonWrapper() {}
+
+  /** Operations
+   */
+
+  bool isGoodMuon( muon::SelectionType type,
+                   reco::Muon::ArbitrationType arbitrationType =
+                   reco::Muon::SegmentAndTrackArbitration ) {
+    return muon::isGoodMuon( *ptr, type, arbitrationType );
+  }
+  static
+  bool isGoodMuon( const reco::Muon& muon,
+                   muon::SelectionType type,
+                   reco::Muon::ArbitrationType arbitrationType =
+                   reco::Muon::SegmentAndTrackArbitration ) {
+    return muon::isGoodMuon( muon, type, arbitrationType );
+  }
+
+  bool isLooseMuon() {
+    return muon::isLooseMuon( *ptr );
+  }
+  static
+  bool isLooseMuon( const reco::Muon& muon ) {
+    return muon::isLooseMuon( muon );
+  }
+
+  bool isMediumMuon() {
+    return false;
+  }
+  static
+  bool isMediumMuon( const reco::Muon& muon ) {
+    return false;
+  }
+
+  bool isTightMuon( const reco::Vertex& vtx ) {
+    return muon::isTightMuon( *ptr, vtx );
+  }
+  static
+  bool isTightMuon( const reco::Muon& muon, const reco::Vertex& vtx ) {
+    return muon::isTightMuon( muon, vtx );
+  }
+
+  bool isSoftMuon( const reco::Vertex& vtx ) {
+    return muon::isSoftMuon( *ptr, vtx );
+  }
+  static
+  bool isSoftMuon( const reco::Muon& muon, const reco::Vertex& vtx ) {
+    return muon::isSoftMuon( muon, vtx );
+  }
+
+  bool isHighPtMuon( const reco::Vertex& vtx ) {
+    return muon::isHighPtMuon( *ptr, vtx );
+  }
+  static
+  bool isHighPtMuon( const reco::Muon& muon, const reco::Vertex& vtx ) {
+    return muon::isHighPtMuon( muon, vtx );
+  }
+
+  const reco::Track* bestMuonTrack() {
+    return bestMuonTrack( *ptr );
+  }
+  static
+  const reco::Track* bestMuonTrack( const reco::Muon& muon ) {
+    try {
+      const reco::TrackRef tkr = muon::improvedMuonBestTrack( muon,
+                                 muon::improvedTuneP );
+      if ( !tkr.isNull() ) return tkr.get();
+    }
+    catch ( edm::Exception e ) {
+    }
+    return 0;
+  }
+
+ private:
+
+  // private copy and assigment constructors
+  PDMuonWrapper           ( const PDMuonWrapper& x );
+  PDMuonWrapper& operator=( const PDMuonWrapper& x );
+
+  pat::Muon* ptr;
+
+};
+
+//#include "PDAnalysis/EDM/interface/PDMuonWrapper.hpp"
+
+#endif // PDMuonWrapper_H
+

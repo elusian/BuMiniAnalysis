@@ -1,0 +1,16 @@
+{
+TProof* p = TProof::Open("workers=2");
+cout << "AddIncludePath: " << p->AddIncludePath(" $CMSSW_BASE/src/PDAnalysis/Ntu/bin  $CMSSW_BASE/src ", kTRUE ) << endl;
+cout << gSystem->GetIncludePath() << endl;
+
+//TChain *chain = new TChain("PDtree", "PDtree");
+//chain->Add("/lustre/cmswork/elusiani/PhD/miniAOD/environments/anaMiniAOD/src/PDAnalysis/Ntu/bin/test_ntu.root");
+
+TChain *chain = new TChain("Events", "Events");
+chain->Add("/lustre/cmswork/elusiani/PhD/miniAOD/environments/anaMiniAOD/src/PDAnalysis/Ntu/bin/test_edm.root");
+
+chain->SetProof();
+chain->Process("PDProofAnalyzer.cc++");//,"",5000);
+//chain->Process("PDProofLightAnalyzer.cc++");//,"",5000);
+delete chain;
+}

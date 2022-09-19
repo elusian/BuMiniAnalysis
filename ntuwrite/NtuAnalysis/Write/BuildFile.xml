@@ -1,0 +1,17 @@
+<use   name="root"/>
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/ParameterSet"/>
+<use   name="NtuAnalysis/Common"/>
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/EDM"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<export>
+  <use   name="root"/>
+  <use   name="FWCore/Framework"/>
+  <use   name="FWCore/ParameterSet"/>
+  <use   name="NtuAnalysis/Common"/>
+  <use   name="NtuTool/Common"/>
+  <use   name="NtuTool/EDM"/>
+  <use   name="root"/>
+  <lib   name="1"/>
+</export>

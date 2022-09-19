@@ -1,0 +1,26 @@
+#!/bin/sh
+
+cd `dirname $0`
+cd ../..
+export DIR=`/bin/pwd`
+
+export VERS=$1
+
+export FILE=${DIR}/PDAnalysisReadFullNtu_${VERS}.tgz
+
+rm -f ${FILE}
+tar -czf ${FILE}                                   \
+         PDAnalysis/Ntu/interface/PDGenHandler.h   \
+         PDAnalysis/Ntu/src/PDGenHandler.cc        \
+         PDAnalysis/Ntu/bin/PDSecondNtupleData.h   \
+         PDAnalysis/Ntu/bin/PDSecondNtupleReader.h \
+         PDAnalysis/Ntu/bin/PDSecondNtupleWriter.h \
+         PDAnalysis/Ntu/bin/secondAnalyze.cc       \
+         PDAnalysis/Ntu/bin/compileSecond*.sh      \
+         PDAnalysis/Ntu/bin/exportSecond.sh        \
+         PDAnalysis/Ntu/bin/DataSetFilter.h        \
+         PDAnalysis/Ntu/bin/DataSetFilter.cc       \
+         PDAnalysis/Ntu/bin/PDAnalyzer.h           \
+         PDAnalysis/Ntu/bin/PDAnalyzer.cc          \
+         PDAnalysis/Ntu/bin/pdMacro.C
+echo ${FILE}

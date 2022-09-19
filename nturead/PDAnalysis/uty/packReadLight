@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cd `dirname $0`
+cd ../..
+export DIR=`/bin/pwd`
+
+export VERS=$1
+
+export FILE=${DIR}/PDAnalysisReadLightNtu_${VERS}.tgz
+
+rm -f ${FILE}
+tar -czf ${FILE}                                 \
+         PDAnalysis/Ntu/interface/PDGenHandler.h \
+         PDAnalysis/Ntu/src/PDGenHandler.cc      \
+         PDAnalysis/Ntu/bin/PDAnalyzer.h         \
+         PDAnalysis/Ntu/bin/PDAnalyzer.cc
+echo ${FILE}

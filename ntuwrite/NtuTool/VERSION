@@ -1,0 +1,277 @@
+03.03.01
+
+support for vector<TObject*> autosave added
+
+----------------------
+
+03.02.02
+
+Type code fixed for bool
+
+----------------------
+
+03.01.02
+
+Scripts added to set wrappers
+
+----------------------
+
+03.01.01
+
+Wrappers added for CMSSW_8_1_0
+
+----------------------
+
+03.00.04
+
+count of read and analyzed events splitted
+
+----------------------
+
+03.00.03
+
+skim function names modified
+
+----------------------
+
+03.00.02
+
+cosmetic fix
+
+----------------------
+
+03.00.01
+
+EDMTreeWriter inheritance changed to virtual to allow usage of interfaces in accessing data by token
+
+----------------------
+
+02.02.06
+
+wildcards in TreeFilter::dropBranch added
+
+----------------------
+
+02.02.05
+
+returning value getUserParameter function added
+
+----------------------
+
+02.02.04
+
+BuildFile cleanup
+
+----------------------
+
+02.02.03
+
+branch drop added in flat ntuple filter
+
+small fix in install scripts
+
+----------------------
+
+02.02.02
+
+update scripts for CMSSW_7 added
+
+----------------------
+
+02.02.01
+
+A few improvements
+
+----------------------
+
+02.01.02
+
+small fixes
+
+----------------------
+
+02.01.01
+
+examples updated
+
+EDMTreeFilter added
+
+template setUserParameter function added
+
+small fixes
+
+template specialization files reorganized
+
+----------------------
+
+01.02.23
+
+small fixes
+
+----------------------
+
+01.02.22
+
+template specialization files reorganized
+
+----------------------
+
+01.02.21
+
+compilation flag added to BuildFile to remove warnings
+
+----------------------
+
+01.02.20
+
+user parameters dump added
+
+----------------------
+
+01.02.19
+
+ROOT objects writing improved
+
+environment set scripts improved
+
+----------------------
+
+01.02.18
+
+compile and environment set scripts improved
+
+----------------------
+
+01.02.17
+
+reader and analyzer constructions improved
+
+----------------------
+
+01.02.16
+
+histo plotting protection added
+
+----------------------
+
+01.02.15
+
+preselection allowed in getEntry
+
+----------------------
+
+01.02.14
+
+autoSave modified to take a TList of output objects
+
+initRead split in two functions
+
+----------------------
+
+01.02.13
+
+user-customizable output file open mode
+
+----------------------
+
+01.02.12
+
+user-customizable output overwriting
+
+----------------------
+
+01.02.11
+
+user-customizable tree reading added
+
+----------------------
+
+01.02.10
+
+user parameter reading from file added
+
+----------------------
+
+01.02.09
+
+export script updated to work from the WebCVS tarball
+
+----------------------
+
+01.02.08
+
+install script updated to work anywhere
+
+----------------------
+
+01.02.07
+
+null file handling added
+
+----------------------
+
+01.02.06
+
+boolean user parameters handling added
+
+----------------------
+
+01.02.05
+
+file restored, removed by mistake
+
+file removed, left by mistake
+
+main program moved to bin directory
+
+small fixes
+
+----------------------
+
+01.02.04
+
+LD_LIBRAY_PATH cleanup added
+
+event count moved from TreeReader to TreeWrapper
+
+inclusion of SimpleNtuple example moved to separate file
+
+examples to read outside CMSSW moved to a separate directory
+
+preprocessor control of ntuple type added
+
+small fixes
+
+----------------------
+
+01.02.03
+
+automatic save of subdirectory structure added
+
+----------------------
+
+01.02.02
+
+explicit autoSave() added in default analysis
+
+----------------------
+
+01.02.01
+
+histo handling moved from TreeReader to TreeWrapper
+
+comments added in test writers
+
+begin/end functions and autoSave added in test analyzers
+
+explicit deletion of old executables added in compile scripts
+
+tool development log added
+
+----------------------
+
+01.01.05
+
+subfolder handling added
+
+

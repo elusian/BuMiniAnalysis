@@ -1,0 +1,606 @@
+#include "PDAnalysis/Ntu/interface/PDEnumString.h"
+
+#include <iostream>
+#include <algorithm>
+
+//using namespace std;
+
+std::string PDEnumString::defaultString;
+std::map<int,std::string> PDEnumString:: trigPathMapIS;
+std::map<std::string,int> PDEnumString:: trigPathMapSI;
+std::map<int,std::string> PDEnumString:: trigObjectMapIS;
+std::map<std::string,int> PDEnumString:: trigObjectMapSI;
+std::map<int,std::string> PDEnumString:: recoObjectMapIS;
+std::map<std::string,int> PDEnumString:: recoObjectMapSI;
+std::map<int,std::string> PDEnumString::evtInfoTypeMapIS;
+std::map<std::string,int> PDEnumString::evtInfoTypeMapSI;
+std::map<int,std::string> PDEnumString::jetInfoTypeMapIS;
+std::map<std::string,int> PDEnumString::jetInfoTypeMapSI;
+std::map<int,std::string> PDEnumString::eleInfoTypeMapIS;
+std::map<std::string,int> PDEnumString::eleInfoTypeMapSI;
+std::map<int,std::string> PDEnumString::eIdInfoTypeMapIS;
+std::map<std::string,int> PDEnumString::eIdInfoTypeMapSI;
+std::map<int,std::string> PDEnumString:: vertexTypeMapIS;
+std::map<std::string,int> PDEnumString:: vertexTypeMapSI;
+std::map<int,std::string> PDEnumString::  trackTypeMapIS;
+std::map<std::string,int> PDEnumString::  trackTypeMapSI;
+std::map<int,std::string> PDEnumString::   muonTypeMapIS;
+std::map<std::string,int> PDEnumString::   muonTypeMapSI;
+std::map<int,std::string> PDEnumString::    tagTypeMapIS;
+std::map<std::string,int> PDEnumString::    tagTypeMapSI;
+std::map<int,std::string> PDEnumString::elePropertyMapIS;
+std::map<std::string,int> PDEnumString::elePropertyMapSI;
+
+static PDEnumString pdEnumString;
+
+namespace {
+  std::string replacedString( const std::string& os ) {
+    std::string ns = os;
+    std::replace( ns.begin(), ns.end(), '_', '-');
+    return ns;
+  }
+}
+
+#define mP( NAME ) std::make_pair( #NAME, NAME )
+#define mR( NAME ) std::make_pair( replacedString( #NAME ), NAME )
+
+PDEnumString::PDEnumString() {
+
+  defaultString = "";
+
+  trigPathMapSI.clear();
+//  trigPathMapSI.insert(
+//      mP( dummy ) );
+
+  trigPathMapSI.insert(
+      mP( HLT_Mu17_Mu8_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_IsoMu24_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_IsoMu24_eta2p1_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_Ele27_WP80_v ) );
+  trigPathMapSI.insert(
+      mP( HLT_Ele25_CaloIdVT_CaloIsoVL_TrkIdVL_TrkIsoT_TriCentralPFNoPUJet30_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu40_eta2p1_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_eta2p1_DiCentral_40_20_DiBTagIP3D1stTrack_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_eta2p1_DiCentral_40_20_BTagIP3D1stTrack_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_eta2p1_DiCentral_40_20_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_eta2p1_DiCentral_20_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_eta2p1_L1Mu10erJetC12WdEtaPhi1DiJetsC_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_DoubleCentralJet65_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu12_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu15_eta2p1_TriCentral_40_20_20_DiBTagIP3D1stTrack_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu15_eta2p1_TriCentral_40_20_20_BTagIP3D1stTrack_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu15_eta2p1_TriCentral_40_20_20_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_Mu15_eta2p1_L1Mu10erJetC12WdEtaPhi1DiJetsC_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_DoubleMu4_Jpsi_Displaced_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_DoubleMu4_JpsiTk_Displaced_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_DoubleMu3p5_LowMassNonResonant_Displaced_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_DoubleMu3p5_LowMass_Displaced_v ) );
+//  trigPathMapSI.insert(
+//      mP( HLT_DoubleDisplacedMu4_DiPFJet40Neutral_v ) );
+  revertMap( trigPathMapSI,
+             trigPathMapIS );
+
+  trigObjectMapSI.clear();
+  trigObjectMapSI.insert( mP( hltJet      ) );
+  trigObjectMapSI.insert( mP( hltMuon     ) );
+  trigObjectMapSI.insert( mP( hltElectron ) );
+  trigObjectMapSI.insert( mP( hltTau      ) );
+  trigObjectMapSI.insert( mP( hltTrack    ) );
+  revertMap( trigObjectMapSI,
+             trigObjectMapIS );
+
+  recoObjectMapSI.clear();
+  recoObjectMapSI.insert( mP( recJet      ) );
+  recoObjectMapSI.insert( mP( recMuon     ) );
+  recoObjectMapSI.insert( mP( recElectron ) );
+  recoObjectMapSI.insert( mP( recTau      ) );
+  recoObjectMapSI.insert( mP( recSV       ) );
+  recoObjectMapSI.insert( mP( recPV       ) );
+  recoObjectMapSI.insert( mP(  idElectron ) );
+  revertMap( recoObjectMapSI,
+             recoObjectMapIS );
+
+  evtInfoTypeMapSI.clear();
+  evtInfoTypeMapSI.insert( mP( fixedGridRhoFastjetAll     ) );
+  evtInfoTypeMapSI.insert( mP( fixedGridRhoFastjetAllCalo ) );
+  revertMap( evtInfoTypeMapSI,
+             evtInfoTypeMapIS );
+
+  jetInfoTypeMapSI.clear();
+  jetInfoTypeMapSI.insert( mP( puBeta      ) );
+  jetInfoTypeMapSI.insert( mP( puBetaStar  ) );
+  revertMap( jetInfoTypeMapSI,
+             jetInfoTypeMapIS );
+
+  eleInfoTypeMapSI.clear();
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17IsoV1RawValues               ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17IsoV1Values                  ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17IsoV2RawValues               ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17IsoV2Values                  ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17NoIsoV1RawValues             ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17NoIsoV1Values                ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17NoIsoV2RawValues             ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17NoIsoV2Values                ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Spring16GeneralPurposeV1RawValues  ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Spring16GeneralPurposeV1Values     ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Spring16HZZV1RawValues             ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Spring16HZZV1Values                ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalEnergyErrPostCorr                                      ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalEnergyErrPreCorr                                       ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalEnergyPostCorr                                         ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalEnergyPreCorr                                          ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalTrkEnergyErrPostCorr                                   ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalTrkEnergyErrPreCorr                                    ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalTrkEnergyPostCorr                                      ) );
+  eleInfoTypeMapSI.insert( mP(
+             ecalTrkEnergyPreCorr                                       ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleDown                                            ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleGainDown                                        ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleGainUp                                          ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleStatDown                                        ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleStatUp                                          ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleSystDown                                        ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleSystUp                                          ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleUp                                              ) );
+  eleInfoTypeMapSI.insert( mP(
+             energyScaleValue                                           ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaDown                                            ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaPhiDown                                         ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaPhiUp                                           ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaRhoDown                                         ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaRhoUp                                           ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaUp                                              ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySigmaValue                                           ) );
+  eleInfoTypeMapSI.insert( mP(
+             energySmearNrSigma                                         ) );
+  eleInfoTypeMapSI.insert( mP(
+             heepTrkPtIso                                               ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17IsoV1Categories              ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17IsoV2Categories              ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17NoIsoV1Categories            ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Fall17NoIsoV2Categories            ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Spring16GeneralPurposeV1Categories ) );
+  eleInfoTypeMapSI.insert( mP(
+             ElectronMVAEstimatorRun2Spring16HZZV1Categories            ) );
+  revertMap( eleInfoTypeMapSI,
+             eleInfoTypeMapIS );
+
+  eIdInfoTypeMapSI.clear();
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V1_loose    ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V1_medium   ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V1_tight    ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V1_veto     ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V2_loose    ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V2_medium   ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V2_tight    ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Fall17_94X_V2_veto     ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Summer16_80X_V1_loose  ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Summer16_80X_V1_medium ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Summer16_80X_V1_tight  ) );
+  eIdInfoTypeMapSI.insert( mR( cutBasedElectronID_Summer16_80X_V1_veto   ) );
+  eIdInfoTypeMapSI.insert( mR( heepElectronID_HEEPV70                    ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V1_wp80               ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V1_wp90               ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V1_wpLoose            ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V2_wp80               ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V2_wp90               ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V2_wpHZZ              ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_iso_V2_wpLoose            ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_noIso_V1_wp80             ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_noIso_V1_wp90             ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_noIso_V1_wpLoose          ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_noIso_V2_wp80             ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_noIso_V2_wp90             ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Fall17_noIso_V2_wpLoose          ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Spring16_GeneralPurpose_V1_wp80  ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Spring16_GeneralPurpose_V1_wp90  ) );
+  eIdInfoTypeMapSI.insert( mR( mvaEleID_Spring16_HZZ_V1_wpLoose          ) );
+  revertMap( eIdInfoTypeMapSI,
+             eIdInfoTypeMapIS );
+
+  vertexTypeMapSI.clear();
+  vertexTypeMapSI.insert( mP( svtTagInfo   ) );
+  vertexTypeMapSI.insert( mP( svtFitPair   ) );
+  vertexTypeMapSI.insert( mP( svtK0short   ) );
+  vertexTypeMapSI.insert( mP( svtLambda0   ) );
+  vertexTypeMapSI.insert( mP( svtJPsi      ) );
+  vertexTypeMapSI.insert( mP( svtKx0       ) );
+  vertexTypeMapSI.insert( mP( svtPhi       ) );
+  vertexTypeMapSI.insert( mP( svtMuMu      ) );
+  vertexTypeMapSI.insert( mP( svtBuJPsiK   ) );
+  vertexTypeMapSI.insert( mP( svtBdJPsiKx  ) );
+  vertexTypeMapSI.insert( mP( svtBdKxMuMu  ) );
+  vertexTypeMapSI.insert( mP( svtBsJPsiPhi ) );
+  vertexTypeMapSI.insert( mP( refittedPVAllTrkNoBS ) );
+  vertexTypeMapSI.insert( mP( refittedPVAllTrk     ) );
+  vertexTypeMapSI.insert( mP( refittedPVRCOnlyNoBS ) );
+  vertexTypeMapSI.insert( mP( refittedPVRCOnly     ) );
+  revertMap( vertexTypeMapSI,
+             vertexTypeMapIS );
+
+  trackTypeMapSI.clear();
+  trackTypeMapSI.insert( mP( general      ) );
+  trackTypeMapSI.insert( mP( packed       ) );
+  trackTypeMapSI.insert( mP( pflink       ) );
+  trackTypeMapSI.insert( mP( rclink       ) );
+  trackTypeMapSI.insert( mP( gplink       ) );
+  trackTypeMapSI.insert( mP( muInner      ) );
+  trackTypeMapSI.insert( mP( muStandalone ) );
+  trackTypeMapSI.insert( mP( muGlobal     ) );
+  trackTypeMapSI.insert( mP( muBest       ) );
+  trackTypeMapSI.insert( mP( muPF         ) );
+  trackTypeMapSI.insert( mP( muReco       ) );
+  revertMap( trackTypeMapSI,
+             trackTypeMapIS );
+
+  muonTypeMapSI.clear();
+  muonTypeMapSI.insert( mP( tmOneStation ) );
+  muonTypeMapSI.insert( mP( gmPrompt     ) );
+  muonTypeMapSI.insert( mP( pf           ) );
+  muonTypeMapSI.insert( mP( loose        ) );
+  muonTypeMapSI.insert( mP( medium       ) );
+  muonTypeMapSI.insert( mP( tight        ) );
+  muonTypeMapSI.insert( mP( soft         ) );
+  muonTypeMapSI.insert( mP( highPt       ) );
+  muonTypeMapSI.insert( mP( inner        ) );
+  muonTypeMapSI.insert( mP( standalone   ) );
+  muonTypeMapSI.insert( mP( global       ) );
+  revertMap( muonTypeMapSI,
+             muonTypeMapIS );
+
+  tagTypeMapSI.clear();
+  tagTypeMapSI.insert( mP( pfDeepCSVJetTags_probudsg ) );
+  tagTypeMapSI.insert( mP( pfDeepCSVJetTags_probc    ) );
+  tagTypeMapSI.insert( mP( pfDeepCSVJetTags_probcc   ) );
+  tagTypeMapSI.insert( mP( pfDeepCSVJetTags_probb    ) );
+  tagTypeMapSI.insert( mP( pfDeepCSVJetTags_probbb   ) );
+  tagTypeMapSI.insert( mP( pfDeepFlavourJetTags_probg    ) );
+  tagTypeMapSI.insert( mP( pfDeepFlavourJetTags_probuds  ) );
+  tagTypeMapSI.insert( mP( pfDeepFlavourJetTags_probc    ) );
+  tagTypeMapSI.insert( mP( pfDeepFlavourJetTags_probb    ) );
+  tagTypeMapSI.insert( mP( pfDeepFlavourJetTags_probbb   ) );
+  tagTypeMapSI.insert( mP( pfDeepFlavourJetTags_problepb ) );
+  revertMap( tagTypeMapSI,
+             tagTypeMapIS );
+
+  elePropertyMapSI.clear();
+  elePropertyMapSI.clear();
+  elePropertyMapSI.insert( mP( isPF                          ) );
+  elePropertyMapSI.insert( mP( passConversionVeto            ) );
+  elePropertyMapSI.insert( mP( ambiguous                     ) );
+  elePropertyMapSI.insert( mP( isEB                          ) );
+  elePropertyMapSI.insert( mP( isEBEEGap                     ) );
+  elePropertyMapSI.insert( mP( isEBEtaGap                    ) );
+  elePropertyMapSI.insert( mP( isEBGap                       ) );
+  elePropertyMapSI.insert( mP( isEBPhiGap                    ) );
+  elePropertyMapSI.insert( mP( isEcalEnergyCorrected         ) );
+  elePropertyMapSI.insert( mP( isEE                          ) );
+  elePropertyMapSI.insert( mP( isEEDeeGap                    ) );
+  elePropertyMapSI.insert( mP( isEEGap                       ) );
+  elePropertyMapSI.insert( mP( isEERingGap                   ) );
+  elePropertyMapSI.insert( mP( isElectron                    ) );
+  elePropertyMapSI.insert( mP( isEnergyScaleCorrected        ) );
+  elePropertyMapSI.insert( mP( isGap                         ) );
+  elePropertyMapSI.insert( mP( isGsfCtfChargeConsistent      ) );
+  elePropertyMapSI.insert( mP( isGsfCtfScPixChargeConsistent ) );
+  elePropertyMapSI.insert( mP( isGsfScPixChargeConsistent    ) );
+  elePropertyMapSI.insert( mP( isSeedSaturated               ) );
+  revertMap( elePropertyMapSI,
+             elePropertyMapIS );
+
+}
+
+
+PDEnumString::~PDEnumString() {
+}
+
+
+void
+PDEnumString::resetTrigMap() {
+  trigPathMapIS.clear();
+  trigPathMapSI.clear();
+  return;
+}
+
+
+void
+PDEnumString::revertTrigMap() {
+  revertMap( trigPathMapSI,
+             trigPathMapIS );
+  return;
+}
+
+
+const std::map<int,std::string>&
+PDEnumString::trigMap() {
+  return trigPathMapIS;
+}
+
+
+std::string PDEnumString::trigBase( const std::string& trigPath ) {
+  int pathLength = trigPath.length();
+  const char* str = trigPath.c_str() + pathLength - 1;
+  while ( ( *str >= '0' ) && ( *str <= '9' ) ) {
+    --str;
+    --pathLength;
+  }
+  return trigPath.substr( 0, pathLength );
+}
+
+
+const std::map<int,std::string>&
+PDEnumString::eleInfoTypeMap() {
+  return eleInfoTypeMapIS;
+}
+
+
+const std::map<int,std::string>&
+PDEnumString::eIdInfoTypeMap() {
+  return eIdInfoTypeMapIS;
+}
+
+
+const std::map<int,std::string>&
+PDEnumString::elePropertyMap() {
+  return elePropertyMapIS;
+}
+
+
+int
+PDEnumString::findTrigPath( const std::string& trigPath,
+                            bool fixedList, int code ) {
+//  std::string trigName = trigBase( trigPath );
+//  std::map<std::string,int>::const_iterator
+//    iter = trigPathMapSI.find( trigName );
+  int path = find( trigPath, trigPathMapSI );
+//  std::map<std::string,int>::const_iterator
+//    iter = trigPathMapSI.find( trigPath );
+//  std::map<std::string,int>::const_iterator
+//    iend = trigPathMapSI.end();
+//  if ( iter != iend ) return iter->second;
+  if ( path >= 0 ) return path;
+  if ( fixedList ) return -1;
+  int nextSlot = ( code < 0 ? trigPathMapIS.rbegin()->first + 1 : code );
+//  std::cout << "add " << nextSlot << " " << trigPath << std::endl;
+//  trigPathMapSI.insert( std::make_pair( trigName, nextSlot ) );
+//  trigPathMapIS.insert( std::make_pair( nextSlot, trigName ) );
+  trigPathMapSI.insert( std::make_pair( trigPath, nextSlot ) );
+  trigPathMapIS.insert( std::make_pair( nextSlot, trigPath ) );
+  return nextSlot;
+}
+
+
+const std::string&
+PDEnumString::findTrigPath( int trigPath ) {
+  return find( trigPath, trigPathMapIS );
+}
+
+
+int
+PDEnumString::findTrigObject( const std::string& trigObject ) {
+  return find( trigObject, trigObjectMapSI );
+}
+
+
+const std::string&
+PDEnumString::findTrigObject( int trigObject ) {
+  return find( trigObject, trigObjectMapIS );
+}
+
+
+int
+PDEnumString::findRecoObject( const std::string& recoObject ) {
+  return find( recoObject, recoObjectMapSI );
+}
+
+
+const std::string&
+PDEnumString::findRecoObject( int recoObject ) {
+  return find( recoObject, recoObjectMapIS );
+}
+
+
+int
+PDEnumString::findEvtInfoType( const std::string& evtInfoType ) {
+  return find( evtInfoType, evtInfoTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findEvtInfoType( int evtInfoType ) {
+  return find( evtInfoType, evtInfoTypeMapIS );
+}
+
+
+int
+PDEnumString::findJetInfoType( const std::string& jetInfoType ) {
+  return find( jetInfoType, jetInfoTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findJetInfoType( int jetInfoType ) {
+  return find( jetInfoType, jetInfoTypeMapIS );
+}
+
+
+int
+PDEnumString::findEleInfoType( const std::string& eleInfoType ) {
+  return find( eleInfoType, eleInfoTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findEleInfoType( int eleInfoType ) {
+  return find( eleInfoType, eleInfoTypeMapIS );
+}
+
+
+int
+PDEnumString::findEIdInfoType( const std::string& eIdInfoType ) {
+  return find( eIdInfoType, eIdInfoTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findEIdInfoType( int eIdInfoType ) {
+  return find( eIdInfoType, eIdInfoTypeMapIS );
+}
+
+
+int
+PDEnumString::findVertexType( const std::string& vtxType ) {
+  return find( vtxType, vertexTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findVertexType( int vtxType ) {
+  return find( vtxType, vertexTypeMapIS );
+}
+
+
+int
+PDEnumString::findTrackType( const std::string& trkType ) {
+  return find( trkType, trackTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findTrackType( int trkType ) {
+  return find( trkType, trackTypeMapIS );
+}
+
+
+int
+PDEnumString::findMuonType( const std::string& muoType ) {
+  return find( muoType, muonTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findMuonType( int muoType ) {
+  return find( muoType, muonTypeMapIS );
+}
+
+
+int
+PDEnumString::findTagType( const std::string& tagType ) {
+  return find( tagType, tagTypeMapSI );
+}
+
+
+const std::string&
+PDEnumString::findTagType( int tagType ) {
+  return find( tagType, tagTypeMapIS );
+}
+
+
+int
+PDEnumString::findEleProperty( const std::string& eleProperty ) {
+  return find( eleProperty, elePropertyMapSI );
+}
+
+
+const std::string&
+PDEnumString::findEleProperty( int eleProperty ) {
+  return find( eleProperty, elePropertyMapIS );
+}
+
+
+void PDEnumString::revertMap( const std::map<std::string,int>& mapSI,
+                                    std::map<int,std::string>& mapIS ) {
+  mapIS.clear();
+  std::map<std::string,int>::const_iterator iter = mapSI.begin();
+  std::map<std::string,int>::const_iterator iend = mapSI.end();
+  while ( iter != iend ) {
+    const std::pair<std::string,int>& entry = *iter++;
+    mapIS.insert( std::make_pair( entry.second, entry.first ) );
+  }
+  return;
+}
+
+
+int
+PDEnumString::find( const std::string& name,
+                    const std::map<std::string,int>& eMap, int defaultValue ) {
+  std::map<std::string,int>::const_iterator iter = eMap.find( name );
+  std::map<std::string,int>::const_iterator iend = eMap.end();
+  if ( iter != iend ) return iter->second;
+  return defaultValue;
+}
+
+
+const std::string&
+PDEnumString::find( int code,
+                    const std::map<int,std::string>& eMap ) {
+  std::map<int,std::string>::const_iterator iter = eMap.find( code );
+  std::map<int,std::string>::const_iterator iend = eMap.end();
+  if ( iter != iend ) return iter->second;
+  return defaultString;
+}
+

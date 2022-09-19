@@ -1,0 +1,15 @@
+<use   name="root"/>
+<use   name="DataFormats/Common"/>
+<use   name="DataFormats/PatCandidates"/>
+<use   name="NtuAnalysis/Write"/>
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/ParameterSet"/>
+<use   name="TMPAnalysis/Ntu"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<export>
+  <use   name="FWCore/Framework"/>
+  <use   name="FWCore/ParameterSet"/>
+  <use   name="NtuAnalysis/Write"/>
+  <use   name="TMPAnalysis/Ntu"/>
+  <lib   name="1"/>
+</export>

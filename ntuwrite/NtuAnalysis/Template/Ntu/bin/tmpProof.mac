@@ -1,0 +1,16 @@
+{
+TProof* p = TProof::Open("workers=2");
+cout << "AddIncludePath: " << p->AddIncludePath(" $CMSSW_BASE/src/TMPAnalysis/Ntu/bin  $CMSSW_BASE/src ", kTRUE ) << endl;
+cout << gSystem->GetIncludePath() << endl;
+
+//TChain *chain = new TChain("TMPtree", "TMPtree");
+//chain->Add("TMPNTUANADIR/test_ntu.root");
+
+TChain *chain = new TChain("Events", "Events");
+chain->Add("TMPNTUANADIR/test_edm.root");
+
+chain->SetProof();
+chain->Process("TMPProofAnalyzer.cc++");//,"",5000);
+//chain->Process("TMPProofLightAnalyzer.cc++");//,"",5000);
+delete chain;
+}

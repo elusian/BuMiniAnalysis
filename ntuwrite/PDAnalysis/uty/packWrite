@@ -1,0 +1,32 @@
+#!/bin/sh
+
+cd `dirname $0`
+cd ../..
+export DIR=`/bin/pwd`
+
+export VERS=$1
+
+export FILE=${DIR}/PDAnalysisWriteNtu_${VERS}.tgz
+
+rm -f ${FILE}
+tar -czf ${FILE}                                   \
+         PDAnalysis/Ntu/bin/PDAnalyzer.h           \
+         PDAnalysis/Ntu/bin/PDAnalyzer.cc          \
+         PDAnalysis/EDM/BuildFile.xml              \
+         PDAnalysis/EDM/interface/PDEDMToNtuple.h  \
+         PDAnalysis/EDM/interface/PD*Wrapper.h_*   \
+         PDAnalysis/EDM/interface/PDDumpRecoCand.h \
+         PDAnalysis/EDM/src/PDEDMToNtuple.cc       \
+         PDAnalysis/EDM/src/PDDumpRecoCand.cc      \
+         PDAnalysis/EDM/plugins/BuildFile.xml      \
+         PDAnalysis/EDM/plugins/PFJetsUserData.cc  \
+         PDAnalysis/EDM/bin/crab3_*_cfg.py         \
+         PDAnalysis/EDM/bin/cfg_*_aod.py           \
+         PDAnalysis/EDM/bin/cfg_*_mini.py          \
+         PDAnalysis/EDM/bin/cfg_*_aod.py_20??      \
+         PDAnalysis/EDM/bin/cfg_*_mini.py_20??     \
+         PDAnalysis/EDM/bin/cfg_*_aod.py_20??_???  \
+         PDAnalysis/EDM/bin/cfg_*_mini.py_20??_???
+#         PDAnalysis/EDM/interface/PD*Builder.h     \
+#         PDAnalysis/EDM/src/PD*Builder.cc          \
+echo ${FILE}

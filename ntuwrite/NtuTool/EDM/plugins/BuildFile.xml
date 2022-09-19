@@ -1,0 +1,6 @@
+<use   name="FWCore/Framework"/>
+<use   name="NtuTool/EDM"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<library   file="*.cc" name="NtuToolEDMPlugins">
+  <flags   EDM_PLUGIN="1"/>
+</library>

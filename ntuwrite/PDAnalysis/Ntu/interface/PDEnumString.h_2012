@@ -1,0 +1,282 @@
+#ifndef PDEnumString_H
+#define PDEnumString_H
+
+#include <map>
+#include <string>
+
+class PDEnumString {
+
+ public:
+
+  PDEnumString();
+  virtual ~PDEnumString();
+
+//  enum trigPath   { dummy = 0 };
+  enum trigPath   { HLT_Mu17_Mu8_v = 1,
+                    HLT_Mu17_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v,
+                    HLT_Mu8_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v,
+                    HLT_Ele17_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_Ele8_CaloIdT_CaloIsoVL_TrkIdVL_TrkIsoVL_v,
+                    HLT_IsoMu24_v,
+                    HLT_IsoMu24_eta2p1_v,
+                    HLT_Ele27_WP80_v,
+                    HLT_Ele25_CaloIdVT_CaloIsoVL_TrkIdVL_TrkIsoT_TriCentralPFNoPUJet30_v,
+                    DUMMY_LAST_TRIGGER };
+//  enum trigPath   { HLT_Mu40_eta2p1_v = 1,
+//                    HLT_Mu12_eta2p1_DiCentral_40_20_DiBTagIP3D1stTrack_v,
+//                    HLT_Mu12_eta2p1_DiCentral_40_20_BTagIP3D1stTrack_v,
+//                    HLT_Mu12_eta2p1_DiCentral_40_20_v,
+//                    HLT_Mu12_eta2p1_DiCentral_20_v,
+//                    HLT_Mu12_eta2p1_L1Mu10erJetC12WdEtaPhi1DiJetsC_v,
+//                    HLT_Mu12_DoubleCentralJet65_v,
+//                    HLT_Mu12_v,
+//                    HLT_Mu15_eta2p1_TriCentral_40_20_20_DiBTagIP3D1stTrack_v,
+//                    HLT_Mu15_eta2p1_TriCentral_40_20_20_BTagIP3D1stTrack_v,
+//                    HLT_Mu15_eta2p1_TriCentral_40_20_20_v,
+//                    HLT_Mu15_eta2p1_L1Mu10erJetC12WdEtaPhi1DiJetsC_v,
+//                    HLT_DoubleMu4_Jpsi_Displaced_v,
+//                    HLT_DoubleMu4_JpsiTk_Displaced_v,
+//                    HLT_DoubleMu3p5_LowMassNonResonant_Displaced_v,
+//                    HLT_DoubleMu3p5_LowMass_Displaced_v,
+//                    HLT_DoubleDisplacedMu4_DiPFJet40Neutral_v };
+  enum trigObject { hltJet = 1,
+                    hltMuon,
+                    hltElectron,
+                    hltTau,
+                    hltTrack };
+  enum recoObject { eventInfo,
+                    recJet = 11,
+                    recMuon,
+                    recElectron,
+                    recTau,
+                    recSV,
+                    recPV,
+                    idElectron = 23 };
+  enum evtInfoType{ fixedGridRhoFastjetAll = 1,
+                    fixedGridRhoFastjetAllCalo };
+  enum jetInfoType{ puBeta = 10,
+                    puBetaStar };
+  enum eleInfoType{ ElectronMVAEstimatorRun2Fall17IsoV1RawValues = 10001,
+                    ElectronMVAEstimatorRun2Fall17IsoV1Values,
+                    ElectronMVAEstimatorRun2Fall17IsoV2RawValues,
+                    ElectronMVAEstimatorRun2Fall17IsoV2Values,
+                    ElectronMVAEstimatorRun2Fall17NoIsoV1RawValues,
+                    ElectronMVAEstimatorRun2Fall17NoIsoV1Values,
+                    ElectronMVAEstimatorRun2Fall17NoIsoV2RawValues,
+                    ElectronMVAEstimatorRun2Fall17NoIsoV2Values,
+                    ElectronMVAEstimatorRun2Spring16GeneralPurposeV1RawValues,
+                    ElectronMVAEstimatorRun2Spring16GeneralPurposeV1Values,
+                    ElectronMVAEstimatorRun2Spring16HZZV1RawValues,
+                    ElectronMVAEstimatorRun2Spring16HZZV1Values,
+                    ecalEnergyErrPostCorr = 20001,
+                    ecalEnergyErrPreCorr,
+                    ecalEnergyPostCorr,
+                    ecalEnergyPreCorr,
+                    ecalTrkEnergyErrPostCorr,
+                    ecalTrkEnergyErrPreCorr,
+                    ecalTrkEnergyPostCorr,
+                    ecalTrkEnergyPreCorr,
+                    energyScaleDown,
+                    energyScaleGainDown,
+                    energyScaleGainUp,
+                    energyScaleStatDown,
+                    energyScaleStatUp,
+                    energyScaleSystDown,
+                    energyScaleSystUp,
+                    energyScaleUp,
+                    energyScaleValue,
+                    energySigmaDown,
+                    energySigmaPhiDown,
+                    energySigmaPhiUp,
+                    energySigmaRhoDown,
+                    energySigmaRhoUp,
+                    energySigmaUp,
+                    energySigmaValue,
+                    energySmearNrSigma,
+                    heepTrkPtIso,
+                    ElectronMVAEstimatorRun2Fall17IsoV1Categories = 30001,
+                    ElectronMVAEstimatorRun2Fall17IsoV2Categories,
+                    ElectronMVAEstimatorRun2Fall17NoIsoV1Categories,
+                    ElectronMVAEstimatorRun2Fall17NoIsoV2Categories,
+                    ElectronMVAEstimatorRun2Spring16GeneralPurposeV1Categories,
+                    ElectronMVAEstimatorRun2Spring16HZZV1Categories };
+  enum eIdInfoType{ cutBasedElectronID_Fall17_94X_V1_loose    =         1,
+                    cutBasedElectronID_Fall17_94X_V1_medium   =         2,
+                    cutBasedElectronID_Fall17_94X_V1_tight    =         4,
+                    cutBasedElectronID_Fall17_94X_V1_veto     =         8,
+                    cutBasedElectronID_Fall17_94X_V2_loose    =        16,
+                    cutBasedElectronID_Fall17_94X_V2_medium   =        32,
+                    cutBasedElectronID_Fall17_94X_V2_tight    =        64,
+                    cutBasedElectronID_Fall17_94X_V2_veto     =       128,
+                    cutBasedElectronID_Summer16_80X_V1_loose  =       256,
+                    cutBasedElectronID_Summer16_80X_V1_medium =       512,
+                    cutBasedElectronID_Summer16_80X_V1_tight  =      1024,
+                    cutBasedElectronID_Summer16_80X_V1_veto   =      2048,
+                    heepElectronID_HEEPV70                    =      4096,
+                    mvaEleID_Fall17_iso_V1_wp80               =      8192,
+                    mvaEleID_Fall17_iso_V1_wp90               =     16384,
+                    mvaEleID_Fall17_iso_V1_wpLoose            =     32768,
+                    mvaEleID_Fall17_iso_V2_wp80               =     65536,
+                    mvaEleID_Fall17_iso_V2_wp90               =    131072,
+                    mvaEleID_Fall17_iso_V2_wpHZZ              =    262144,
+                    mvaEleID_Fall17_iso_V2_wpLoose            =    524288,
+                    mvaEleID_Fall17_noIso_V1_wp80             =   1048576,
+                    mvaEleID_Fall17_noIso_V1_wp90             =   2097152,
+                    mvaEleID_Fall17_noIso_V1_wpLoose          =   4194304,
+                    mvaEleID_Fall17_noIso_V2_wp80             =   8388608,
+                    mvaEleID_Fall17_noIso_V2_wp90             =  16777216,
+                    mvaEleID_Fall17_noIso_V2_wpLoose          =  33554432,
+                    mvaEleID_Spring16_GeneralPurpose_V1_wp80  =  67108864,
+                    mvaEleID_Spring16_GeneralPurpose_V1_wp90  = 134217728,
+                    mvaEleID_Spring16_HZZ_V1_wpLoose          = 268435456 };
+  enum vertexType { svtTagInfo = 1,
+                    svtFitPair,
+                    svtK0short = 11,
+                    svtLambda0,
+                    svtJPsi    = 101,
+                    svtKx0,
+                    svtPhi,
+                    svtMuMu,
+                    svtBuJPsiK   = 211,
+                    svtBdJPsiKx  = 221,
+                    svtBdKxMuMu,
+                    svtBsJPsiPhi = 231,
+                    refittedPVAllTrkNoBS = 10011,
+                    refittedPVAllTrk,
+                    refittedPVRCOnlyNoBS = 10021,
+                    refittedPVRCOnly,
+                    DUMMY_LAST_DECAY };
+  enum trackType  { general      =     1,
+                    packed       =     2,
+                    pflink       =     4,
+                    rclink       =     8,
+                    gplink       =    16,
+                    muInner      =  1024,
+                    muStandalone =  2048,
+                    muGlobal     =  4096,
+                    muBest       =  8192,
+                    muPF         = 16384,
+                    muReco       = 32768 };
+  enum muonType   { tmOneStation =    1,
+                    gmPrompt     =    2,
+                    pf           = pflink,
+                    loose        =    8,
+                    medium       =   16,
+                    tight        =   32,
+                    soft         =   64,
+                    highPt       =  128,
+                    inner        = muInner,
+                    standalone   = muStandalone,
+                    global       = muGlobal };
+  enum tagType    { pfDeepCSVJetTags_probudsg = 11,
+                    pfDeepCSVJetTags_probc    = 21,
+                    pfDeepCSVJetTags_probcc   = 22,
+                    pfDeepCSVJetTags_probb    = 31,
+                    pfDeepCSVJetTags_probbb   = 32,
+                    pfDeepFlavourJetTags_probg    = 101,
+                    pfDeepFlavourJetTags_probuds  = 111,
+                    pfDeepFlavourJetTags_probc    = 121,
+                    pfDeepFlavourJetTags_probb    = 131,
+                    pfDeepFlavourJetTags_probbb   = 132,
+                    pfDeepFlavourJetTags_problepb = 133,
+                    DUMMY_LAST_TAG };
+  enum eleProperty{ isPF                               = 1,
+                    passConversionVeto                 = 2,
+                    ambiguous                          = 4,
+                    isEB                               = 8,
+                    isEBEEGap                         = 16,
+                    isEBEtaGap                        = 32,
+                    isEBGap                           = 64,
+                    isEBPhiGap                       = 128,
+                    isEcalEnergyCorrected            = 256,
+                    isEE                             = 512,
+                    isEEDeeGap                      = 1024,
+                    isEEGap                         = 2048,
+                    isEERingGap                     = 4096,
+                    isElectron                      = 8192,
+                    isEnergyScaleCorrected         = 16384,
+                    isGap                          = 32768,
+                    isGsfCtfChargeConsistent       = 65536,
+                    isGsfCtfScPixChargeConsistent = 131072,
+                    isGsfScPixChargeConsistent    = 262144,
+                    isSeedSaturated               = 524288 };
+
+  static void  resetTrigMap();
+  static void revertTrigMap();
+  static const std::map<int,std::string>& trigMap();
+  static std::string trigBase( const std::string& trigPath );
+
+  static const std::map<int,std::string>& eleInfoTypeMap();
+  static const std::map<int,std::string>& eIdInfoTypeMap();
+  static const std::map<int,std::string>& elePropertyMap();
+
+  static int                findTrigPath    ( const std::string& trigPath,
+                                              bool fixedList = true,
+                                              int code = -1 );
+  static const std::string& findTrigPath    ( int                trigPath     );
+  static int                findTrigObject  ( const std::string& trigObject   );
+  static const std::string& findTrigObject  ( int                trigObject   );
+  static int                findRecoObject  ( const std::string& recoObject   );
+  static const std::string& findRecoObject  ( int                recoObject   );
+  static int                findEvtInfoType ( const std::string& evtInfoType  );
+  static const std::string& findEvtInfoType ( int                evtInfoType  );
+  static int                findJetInfoType ( const std::string& jetInfoType  );
+  static const std::string& findJetInfoType ( int                jetInfoType  );
+  static int                findEleInfoType ( const std::string& eleInfoType  );
+  static const std::string& findEleInfoType ( int                eleInfoType  );
+  static int                findEIdInfoType ( const std::string& eIdInfoType  );
+  static const std::string& findEIdInfoType ( int                eIdInfoType  );
+  static int                findVertexType  ( const std::string& vtxType      );
+  static const std::string& findVertexType  ( int                vtxType      );
+  static int                findTrackType   ( const std::string& trkType      );
+  static const std::string& findTrackType   ( int                trkType      );
+  static int                findMuonType    ( const std::string& muoType      );
+  static const std::string& findMuonType    ( int                muoType      );
+  static int                findTagType     ( const std::string& tagType      );
+  static const std::string& findTagType     ( int                tagType      );
+  static int                findEleIDType   ( const std::string& eleIDType    );
+  static const std::string& findEleIDType   ( int                eleIDType    );
+  static int                findEleProperty ( const std::string& eleProperty  );
+  static const std::string& findEleProperty ( int                eleProperty  );
+
+ private:
+
+  static std::string defaultString;
+  static std::map<int,std::string>     trigPathMapIS;
+  static std::map<std::string,int>     trigPathMapSI;
+  static std::map<int,std::string>   trigObjectMapIS;
+  static std::map<std::string,int>   trigObjectMapSI;
+  static std::map<int,std::string>   recoObjectMapIS;
+  static std::map<std::string,int>   recoObjectMapSI;
+  static std::map<int,std::string>  evtInfoTypeMapIS;
+  static std::map<std::string,int>  evtInfoTypeMapSI;
+  static std::map<int,std::string>  jetInfoTypeMapIS;
+  static std::map<std::string,int>  jetInfoTypeMapSI;
+  static std::map<int,std::string>  eleInfoTypeMapIS;
+  static std::map<std::string,int>  eleInfoTypeMapSI;
+  static std::map<int,std::string>  eIdInfoTypeMapIS;
+  static std::map<std::string,int>  eIdInfoTypeMapSI;
+  static std::map<int,std::string>   vertexTypeMapIS;
+  static std::map<std::string,int>   vertexTypeMapSI;
+  static std::map<int,std::string>    trackTypeMapIS;
+  static std::map<std::string,int>    trackTypeMapSI;
+  static std::map<int,std::string>     muonTypeMapIS;
+  static std::map<std::string,int>     muonTypeMapSI;
+  static std::map<int,std::string>      tagTypeMapIS;
+  static std::map<std::string,int>      tagTypeMapSI;
+  static std::map<int,std::string>  elePropertyMapIS;
+  static std::map<std::string,int>  elePropertyMapSI;
+
+  static void revertMap( const std::map<std::string,int>& mapSI,
+                               std::map<int,std::string>& mapIS );
+
+  static int                find( const std::string& name,
+                                  const std::map<std::string,int>& eMap,
+                                  int defaultValue = -1 );
+  static const std::string& find( int                code,
+                                  const std::map<int,std::string>& eMap );
+
+};
+
+
+#endif
+

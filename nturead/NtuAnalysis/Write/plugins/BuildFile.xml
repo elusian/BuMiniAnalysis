@@ -1,0 +1,8 @@
+<use   name="FWCore/ParameterSet"/>
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/PluginManager"/>
+<use   name="NtuAnalysis/Common"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<library   file="*.cc" name="NtuAnalysisWritePlugins">
+  <flags   EDM_PLUGIN="1"/>
+</library>

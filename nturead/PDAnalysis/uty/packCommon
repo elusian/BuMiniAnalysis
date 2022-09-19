@@ -1,0 +1,23 @@
+#!/bin/sh
+
+cd `dirname $0`
+cd ../..
+export DIR=`/bin/pwd`
+
+export VERS=$1
+
+export FILE=${DIR}/PDAnalysisCommonNtu_${VERS}.tgz
+
+rm -f ${FILE}
+tar -czf ${FILE}                                     \
+         PDAnalysis/uty                              \
+         PDAnalysis/Ntu/interface/PDNtupleData.h     \
+         PDAnalysis/Ntu/interface/PDNtupleBranch.h   \
+         PDAnalysis/Ntu/interface/PDNtupleBranch.hpp \
+         PDAnalysis/Ntu/interface/PDEnumString.h_2*  \
+         PDAnalysis/Ntu/interface/PDAnalyzerUtil.h   \
+         PDAnalysis/Ntu/src/PDNtupleData.cc          \
+         PDAnalysis/Ntu/src/PDEnumString.cc_2*       \
+         PDAnalysis/Ntu/bin/PDAnalyzerUtil.h         \
+         PDAnalysis/Ntu/bin/PDAnalyzerUtil.cc
+echo ${FILE}

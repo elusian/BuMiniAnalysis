@@ -1,0 +1,32 @@
+<use   name="root"/>
+<use   name="CommonTools/Utils"/>
+<use   name="DataFormats/FWLite"/>
+<use   name="DataFormats/MuonReco"/>
+<use   name="DataFormats/ParticleFlowCandidate"/>
+<use   name="FWCore/ParameterSet"/>
+<use   name="FWCore/Framework"/>
+<use   name="FWCore/PluginManager"/>
+<use   name="HLTrigger/HLTcore"/>
+<use   name="DataFormats/PatCandidates"/>
+<use   name="PhysicsTools/CandUtils"/>
+<use   name="PhysicsTools/Utilities"/>
+<use   name="PhysicsTools/FWLite"/>
+<use   name="CommonTools/CandUtils"/>
+<use   name="PhysicsTools/UtilAlgos"/>
+<use   name="PhysicsTools/PatUtils"/>
+<use   name="RecoEgamma/EgammaTools"/>
+<use   name="RecoVertex/KalmanVertexFit"/>
+<use   name="NtuTool/Common"/>
+<use   name="NtuTool/Read"/>
+<use   name="NtuTool/EDM"/>
+<use   name="NtuAnalysis/Common"/>
+<use   name="NtuAnalysis/Write"/>
+<use   name="PDAnalysis/Ntu"/>
+<use   name="HeavyFlavorAnalysis/RecoDecay"/>
+<use   name="HeavyFlavorAnalysis/SpecificDecay"/>
+<flags CXXFLAGS="-Wno-delete-non-virtual-dtor"/>
+<export>
+  <use   name="HeavyFlavorAnalysis/SpecificDecay"/>
+  <use   name="HeavyFlavorAnalysis/RecoDecay"/>
+  <lib   name="1"/>
+</export>
